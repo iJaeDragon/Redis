@@ -1,5 +1,5 @@
 -- 모든 데이터 제거
-FLUSHALL
+-- FLUSHALL
 
 -- 모든 데이터 키값 확인
 keys *
@@ -13,3 +13,17 @@ SAVE
 
 -- 별도의 자식 프로세스를 띄워 Redis는 동작을 멈추지 않은 채, 명령어 수행 당시의 snapshot을 저장(non-blocking 방식)
 BGSAVE
+
+-- RDB 파일 불러오기
+
+-- 방법 1.
+-- RDB 파일 로드 방식
+-- Redis 서버가 시작될 때 RDB 파일을 로드
+-- Redis 서버가 RDB 파일을 읽어 Redis 데이터베이스를 복원
+redis-server --rdb <rdb_file_path>
+
+-- 방법 2.
+-- RDB 파일 Import 방식
+-- Redis 서버가 이미 실행 중일 때 RDB 파일을 적용
+-- Redis 서버에 RDB 파일을 import하는 방법은 RDB 파일을 직접 Redis 데이터베이스에 적용
+redis-cli --rdb <rdb_file_path>
